@@ -1,7 +1,7 @@
 package com.example.billing.service;
 
-import javax.transaction.Transactional;
 
+import jakarta.transaction.Transactional;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
