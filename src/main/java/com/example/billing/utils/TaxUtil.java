@@ -1,7 +1,9 @@
 package com.example.billing.utils;
 
-public class TaxUtil {
-	
+public final class TaxUtil {
+
+    private TaxUtil(){}
+
 	public static double roundToHigherCent(double d){
 		int decimal = (int) d;
 		double fractional = d - decimal;

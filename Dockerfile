@@ -2,7 +2,7 @@
 FROM openjdk:11
 
 #The maintainer of the image
-MAINTAINER badii.khila@gmail.com
+LABEL org.opencontainers.image.authors="badii.khila@gmail.com"
 
 ARG JAR_FILE=target/billing.jar
 #ARG JAR_FILE=target/*.jar
@@ -11,5 +11,5 @@ ARG JAR_FILE=target/billing.jar
 COPY ${JAR_FILE} app.jar
 
 #This will be the executable to start when the container is booting.
-#éWe must define them as JSON-Array because we'll use an ENTRYPOINT in combination with a CMD for some application arguments
+#We must define them as JSON-Array because we'll use an ENTRYPOINT in combination with a CMD for some application arguments
 ENTRYPOINT ["java","-jar","/app.jar"]

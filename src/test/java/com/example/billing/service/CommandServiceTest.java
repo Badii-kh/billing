@@ -1,20 +1,5 @@
 package com.example.billing.service;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.when;
-
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.modelmapper.ModelMapper;
-
 import com.example.billing.dto.CommandDto;
 import com.example.billing.dto.CommandItemDto;
 import com.example.billing.dto.ProductDto;
@@ -25,9 +10,23 @@ import com.example.billing.entity.Product;
 import com.example.billing.entity.ProductType;
 import com.example.billing.exception.NotFoundException;
 import com.example.billing.repository.CommandRepository;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.modelmapper.ModelMapper;
+
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class CommandServiceTest {
+class CommandServiceTest {
 
 	@InjectMocks
 	private CommandService commandService;
@@ -37,7 +36,7 @@ public class CommandServiceTest {
 	private ModelMapper modelMapper;
 	
 	@Test
-	public void findCommandsById_test_totalTTC() {
+	void findCommandsById_test_totalTTC() {
 		Command commandMock=new Command();
 		commandMock.setId(1);
 		CommandItem commandItem=new CommandItem();
@@ -78,13 +77,13 @@ public class CommandServiceTest {
 		when(modelMapper.map(org.mockito.ArgumentMatchers.any(), org.mockito.ArgumentMatchers.any())).thenReturn(commandDtoMock);
 		
 		CommandDto result = commandService.findCommandsById(1);
-		assertTrue(result.getTotalTTC()==61.4);
+        assertEquals(61.4, result.getTotalTTC());
 	}
 	
 	@Test
-	public void findCommandsById_test_exception() {
-		assertThrows(NotFoundException.class, () -> {
-			when(commandRepository.findById(1L)).thenThrow(NotFoundException.class);
+	void findCommandsById_test_exception() {
+        when(commandRepository.findById(1L)).thenThrow(NotFoundException.class);
+        assertThrows(NotFoundException.class, () -> {
 			commandService.findCommandsById(1);
 		});
 	}
