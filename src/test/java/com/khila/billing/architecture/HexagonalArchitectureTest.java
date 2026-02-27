@@ -19,14 +19,19 @@ public class HexagonalArchitectureTest {
 
     @ArchTest
     static final Architectures.OnionArchitecture hexagonal_architecture = onionArchitecture()
-
+                // Ref: https://www.archunit.org/userguide/html/000_Index.html#_onion_architecture
                 // The domainModels packages contain the domain entities
                 .domainModels("com.khila.billing.domain..")
                 // The packages in domainServices contains services that use the entities in the domainModel packages
                 .domainServices("..port.out..")
-                //The applicationServices packages contain services and configuration to run the application and use cases. It can use the items of the domain package but there must not be any dependency from the domain to the application packages.
+                //The applicationServices packages contain services and configuration to run the application and use cases.
+                // It can use the items of the domain package but there must not be any dependency from
+                // the domain to the application packages.
                 .applicationServices("com.khila.billing.application..")
-                //The adapter package contains logic to connect to external systems and/or infrastructure. No adapter may depend on another adapter. Adapters can use both the items of the domain as well as the application packages. Vice versa, neither the domain nor the application packages must contain dependencies on any adapter package.
+                // The adapter package contains logic to connect to external systems and/or infrastructure.
+                // No adapter may depend on another adapter. Adapters can use both the items of the domain and the application
+                // packages. Vice versa, neither the domain nor the application packages must contain dependencies
+                // on any adapter package.
                 .adapter("rest",
                         "com.khila.billing.infrastructure.adapter.in.rest..",
                         "com.khila.billing.infrastructure.adapter.exception.."

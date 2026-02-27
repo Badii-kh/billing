@@ -13,29 +13,29 @@ INSERT INTO product (id, name, price, origin, type_id) VALUES
   (9, 'flacon de parfum importé type 2', 27.99, 'GR', 3),
   (7, 'flacon de parfum', 18.99, 'FR', 3),
   (8, 'boîte de pilule contre la migraine', 9.75, 'FR', 1);
-  
--- ORDER 1  
-INSERT INTO command (id) VALUES
+
+-- ORDER 1
+INSERT INTO orders (id) VALUES
   (1);
 
-INSERT INTO command_item (id, product_id, command_id, quantity) VALUES
+INSERT INTO order_item (id, product_id, order_id, quantity) VALUES
   (1, 1, 1, 2),
   (2, 2, 1, 1),
   (3, 3, 1, 3);
 
--- ORDER 2  
-INSERT INTO command (id) VALUES
+-- ORDER 2
+INSERT INTO orders (id) VALUES
   (2);
 
-INSERT INTO command_item (id, product_id, command_id, quantity) VALUES
+INSERT INTO order_item (id, product_id, order_id, quantity) VALUES
   (4, 4, 2, 2),
   (5, 6, 2, 3);
-  
--- ORDER 3  
-INSERT INTO command (id) VALUES
+
+-- ORDER 3
+INSERT INTO orders (id) VALUES
   (3);
 
-INSERT INTO command_item (id, product_id, command_id, quantity) VALUES
+INSERT INTO order_item (id, product_id, order_id, quantity) VALUES
   (6, 9, 3, 2),
   (7, 7, 3, 1),
   (8, 8, 3, 3),
