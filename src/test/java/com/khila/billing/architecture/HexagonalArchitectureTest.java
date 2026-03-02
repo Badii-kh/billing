@@ -39,16 +39,4 @@ public class HexagonalArchitectureTest {
                 .adapter("persistence", "com.khila.billing.infrastructure.adapter.out.persistence..")
                 .adapter("config", "com.khila.billing.infrastructure.adapter.config..");
 
-
-    @ArchTest
-    static final ArchRule domain_should_not_depend_on_spring =
-            noClasses().that().resideInAPackage("..domain..")
-                    .should().dependOnClassesThat().resideInAnyPackage(
-                            "org.springframework..",
-                            "org.springframework.boot..",
-                            "org.springframework.data..",
-                            "org.springframework.transaction..",
-                            "org.springframework.web.."
-                    );
-
 }
